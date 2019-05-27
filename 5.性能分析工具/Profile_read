@@ -5,3 +5,10 @@
 ●percall：（第二个 percall）即函数运行一次的平均时间，等于 cumtime/ncalls；
 ●filename:lineno(function)：每个函数调用的具体信息；
 如果需要将输出以日志的形式保存，只需要在调用的时候加入另外一个参数。如 profile.run(“profileTest()”,”testprof”)。
+
+#########
+测试：line_profiler
+运行命令行：kernprof -l -v line_proliner_test.py
+测试：memory_profiler
+执行命令： python -m memory_profiler line_proliner_test.py
+############
