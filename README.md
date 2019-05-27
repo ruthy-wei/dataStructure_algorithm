@@ -13,6 +13,12 @@
 
 4.进程和线程
 
+    i).Profile
+    ii).time
+    iii).line_profile
+    v).memory_profile
+
 5.性能分析工具
+
 
 6.python高级函数
