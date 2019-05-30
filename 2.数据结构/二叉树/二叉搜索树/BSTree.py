@@ -21,7 +21,7 @@ class BSTree:
         return root
     #查找节点
     def query(self,root,val):
-        if root.val==None:
+        if root==None:
             return False
         elif val<root.val:
             return self.query(root.left,val)
@@ -35,11 +35,46 @@ class BSTree:
             return self.findMax(root.right)
         else:
             return root.val
+    #删除节点
+    def delete(self,root,val):
+        if root==None:
+            return None
+        if root.val>val:
+            root.left=self.delete(root.left,val)
+        if root.val<val:
+            root.right=self.delete(root.right,val)
+        elif root.val==val:
+            if root.left and root.right:
+                temp= self.findMin(root.right)
+                root.val=temp.val
+                root.right = self.delete(root.right,temp.val)
+            elif root.left==None and root.right==None:
+                root= None
+            elif root.left:
+                root= root.left
+            elif root.right:
+                root= root.right
+        return root
+    #查找树中第K小的数
+    def kthSmallest(self, root,k):
+        for i in range(1,k):
+            root=self.deleteMin(root)
+        return self.findMin(root)
+    #查找数中最小值
     def findMin(self,root):
         if root.left:
             return self.findMin(root.left)
         else:
             return root.val
+    #删除数的最小值
+    def deleteMin(self,root):
+        if root.left==None:
+            if root.right:
+                return root.right
+            else:
+                return None
+        root.left=self.deleteMin(root.left)
+        return root
     #中序打印二叉树
     def printTree(self, root):
         # 打印二叉搜索树(中序打印，有序数列)
@@ -51,7 +86,7 @@ class BSTree:
 
 
 if __name__=="__main__":
-    List= [17,5,35,2,11,29,38,9,16,8]
+    List= [5,3,6,2,4,1]
 
     # root=op.builtTree(List)
     root = None
@@ -63,4 +98,8 @@ if __name__=="__main__":
     print('')
     print('查询树中最大值:', op.findMax(root))
     print('查询树中最小值:', op.findMin(root))
-    print('查询树中值为5的节点:', op.query(root, 5))
+    print('查询树中值为2的节点:', op.query(root, 2))
+    print('删除树中值为2的节点,打印删除后的树中序遍历:', )
+    root=op.delete(root, 2)
+    op.printTree(root)
+    # print('查询树中第3小值:', op.kthSmallest(root,3))
