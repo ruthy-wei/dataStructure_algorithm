@@ -9,6 +9,9 @@ class SingleLinkList(object):
     """单链表"""
     def __init__(self, node=None):  # 使用一个默认参数，在传入头结点时则接收，在没有传入时，就默认头结点为空
         self.__head = node
+    def list_to_Link(self, l1):
+        for l in l1:
+            self.append(l)
     def is_empty(self):
         '''链表是否为空'''
         return self.__head == None
@@ -102,12 +105,13 @@ if __name__ == "__main__":
     ll = SingleLinkList()
     print(ll.is_empty())
     print(ll.length())
-
-    ll.append(3)
-    ll.add(999)
-    ll.insert(-3, 110)
-    ll.insert(99, 111)
+    ll.list_to_Link([1,2,3,4])
     ll.travel()
-    print(ll.length())
-    ll.remove(111)
-    ll.travel()
+    # ll.append(3)
+    # ll.add(999)
+    # ll.insert(-3, 110)
+    # ll.insert(99, 111)
+    # ll.travel()
+    # print(ll.length())
+    # ll.remove(111)
+    # ll.travel()
